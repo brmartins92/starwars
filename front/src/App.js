@@ -9,10 +9,10 @@ class App extends React.Component {
   state = {
     displayColorPicker: false,
     color: {
-      r: "241",
-      g: "112",
-      b: "19",
-      a: "1",
+      r: "0",
+      g: "0",
+      b: "0",
+      a: "100",
     },
     objPersonagem: [],
   };
@@ -36,18 +36,19 @@ class App extends React.Component {
   };
 
   onClick = () => {
-    this.setState({
-      objPersonagem: [
-        ...this.state.objPersonagem,
-        { nome: this.state.nome, olhos: this.state.colorhex },
-      ],
-    });
+    if (this.state.nome) {
+      this.setState({
+        objPersonagem: [
+          ...this.state.objPersonagem,
+          { nome: this.state.nome, olhos: this.state.colorhex },
+        ],
+      });
 
-    this.setState({
-      nome: "",
-      color: "",
-    });
-    console.log(this.state.objPersonagem);
+      this.setState({
+        nome: "",
+        color: "",
+      });
+    }
   };
 
   render() {
@@ -119,15 +120,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
-const popover = {
-  position: "absolute",
-  zIndex: "2",
-};
-const cover = {
-  position: "fixed",
-  top: "0px",
-  right: "0px",
-  bottom: "0px",
-  left: "0px",
-};
