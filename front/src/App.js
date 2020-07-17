@@ -79,19 +79,26 @@ class App extends React.Component {
           bottom: "0px",
           left: "0px",
         },
+
+        container: {
+          padding: "10px",
+        },
       },
     });
 
     return (
-      <>
-        <input
-          type="text"
-          name="nome"
-          value={this.state.nome}
-          onChange={(e) => this.onChangeState(e)}
-        ></input>
-
+      <div style={styles.container}>
         <div>
+          <p>Nome</p>
+          <input
+            type="text"
+            name="nome"
+            value={this.state.nome}
+            onChange={(e) => this.onChangeState(e)}
+          ></input>
+        </div>
+        <div>
+          <p>Cor Dos Olhos</p>
           <div style={styles.swatch} onClick={this.handleClick}>
             <div style={styles.color} />
           </div>
@@ -115,7 +122,7 @@ class App extends React.Component {
             </div>
           );
         })}
-      </>
+      </div>
     );
   }
 }
