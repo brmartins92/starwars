@@ -14,10 +14,8 @@ class Personagem extends React.Component {
     this.props.changeDescricao(e);
   };
 */
-  componentDidMount = () => {
-    console.log(this.props.olhos);
-    console.log(this.state.olhos);
-  };
+  componentDidMount = () => {};
+
   render() {
     return (
       <div>

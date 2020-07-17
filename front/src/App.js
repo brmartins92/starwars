@@ -26,13 +26,28 @@ class App extends React.Component {
   };
 
   handleChange = (color) => {
-    this.setState({ color: color.rgb });
+    this.setState({ color: color.rgb, colorhex: color.hex });
   };
 
   onChangeState = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+
+  onClick = () => {
+    this.setState({
+      objPersonagem: [
+        ...this.state.objPersonagem,
+        { nome: this.state.nome, olhos: this.state.colorhex },
+      ],
+    });
+
+    this.setState({
+      nome: "",
+      color: "",
+    });
+    console.log(this.state.objPersonagem);
   };
 
   render() {
@@ -71,6 +86,7 @@ class App extends React.Component {
         <input
           type="text"
           name="nome"
+          value={this.state.nome}
           onChange={(e) => this.onChangeState(e)}
         ></input>
 
@@ -88,11 +104,16 @@ class App extends React.Component {
             </div>
           )}
         </div>
-        <button>Salvar</button>
+        <button onClick={this.onClick}>Salvar</button>
         <hr></hr>
-        <Personagem nome="Bruno" olhos="blue"></Personagem>
-        <Personagem nome="Bruno" olhos="blue"></Personagem>
-        <Personagem nome="Bruno" olhos="blue"></Personagem>
+
+        {this.state.objPersonagem.map((value, i) => {
+          return (
+            <div key={i}>
+              <Personagem nome={value.nome} olhos={value.olhos}></Personagem>
+            </div>
+          );
+        })}
       </>
     );
   }
